@@ -33,5 +33,7 @@ Route::delete('/deletebarangmasuk/{id}/{nama}', [App\Http\Controllers\DatamasukC
 
 Route::resource('/databarangkeluar', DatakeluarController::class);
 Route::get('/tampilkanbarangkeluar', [App\Http\Controllers\DatakeluarController::class, 'tampilkan'])->name('tampilbarangkeluar');
+Route::get('/editbarangmakeluar/{id}/edit/{nama}/{jumlah}/{totalharga}/{tgl}/{ket}', [App\Http\Controllers\DatakeluarController::class, 'editbarangkel'])->name('editbrgkeluar');
+Route::delete('/deletebarangmasukkel/{id}/{nama}', [App\Http\Controllers\DatakeluarController::class, 'destroybarangkel'])->name('hapusbarangkel');
 
 

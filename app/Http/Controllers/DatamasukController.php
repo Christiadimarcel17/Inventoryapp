@@ -83,11 +83,8 @@ class DatamasukController extends Controller
     public function edit($id)
     {
         $brg = Barangmasuk::find($id);
-        //     $tes =explode( ",",$brg['nama_barang']);
-        // dd($tes[0]);
         $namaBarang = json_decode($brg->nama_barang);
         $jumlah = json_decode($brg->jumlah);
-        // dd($namaBarang);
         return view('pegawai.databarangmasuk.edit', compact('brg', 'namaBarang', 'jumlah'));
     }
 

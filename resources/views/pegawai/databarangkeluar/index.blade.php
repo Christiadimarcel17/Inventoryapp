@@ -34,6 +34,7 @@
                                                     <th>Nama Barang</th>
                                                     <th>Total Harga</th>
                                                     <th>Keterangan</th>
+                                                    <th>Aksi</th>
 
                                                 </tr>
                                             </thead>
@@ -43,6 +44,7 @@
                                                     $namabarang = json_decode($row->nama_barang,true);
                                                     $jumlahbarang = json_decode($row->jumlah,true);
                                                     $totalharga = json_decode($row->totalharga,true);
+                                                    $id = $row->id;
                                                     $tanggal_keluar = $row->tanggal_keluar;
                                                     $keterangan = $row->keterangan;
                                                 @endphp
@@ -51,8 +53,19 @@
 
                                                         <td>{{$tanggal_keluar}}</td>
                                                         <td>{{$value}}</td>
-                                                        <td>{{$totalharga[$key]}}</td>
+                                                        <td>Rp{{ number_format($totalharga[$key])}}</td>
                                                         <td>{{$keterangan}}</td>
+                                                        <td>
+                                                            <a href="{{route('editbrgkeluar',['id' => $id, 'nama' => $value, 'jumlah' => $jumlahbarang[$key], 'totalharga' => $totalharga[$key], 'tgl' => $tanggal_keluar, 'ket' => $keterangan])}}" class="btn btn-success">Detail</a>
+                                                            <form
+                                                                    action="{{ route('hapusbarangkel', ['id' => $id, 'nama' => $value]) }}"
+                                                                    method="POST" class="d-inline">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger"
+                                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                                                </form>
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                                 @endforeach

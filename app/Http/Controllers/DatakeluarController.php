@@ -82,7 +82,17 @@ class DatakeluarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $brg = Barangkeluar::find($id);
+        $namaBarang = json_decode($brg->nama_barang);
+        $jumlah = json_decode($brg->jumlah);
+        return view('pegawai.databarangkeluar.edit', compact('brg', 'namaBarang', 'jumlah'));
+    }
+
+    public function editbarangkel($id,$nama,$jumlah,$totalharga,$tgl,$ket)
+    {
+        $brg = Barangkeluar::find($id);
+        return view('pegawai.databarangmasuk.edit', compact('brg', 'nama', 'jumlah', 'totalharga', 'tgl', 'ket'));
+
     }
 
     /**
@@ -106,5 +116,29 @@ class DatakeluarController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function destroybarangkel($id,$nama)
+    {
+        $barangMasuk = Barangkeluar::find($id);
+        $namaBarang = json_decode($barangMasuk->nama_barang);
+
+        // Temukan indeks data yang sesuai dengan nama barang
+        $index = array_search($nama, $namaBarang);
+        if ($index !== false) {
+            // Hapus data sesuai indeks
+            unset($namaBarang[$index]);
+        }
+        //jika nama sudah kosong hapus semua data di kolom
+        if (empty($namaBarang)) {
+            $barangMasuk->delete();
+        } else {
+            // Perbarui data nama barang setelah penghapusan
+            $barangMasuk->nama_barang = json_encode(array_values($namaBarang));
+            $barangMasuk->save();
+        }
+
+        return back();
+
     }
 }
