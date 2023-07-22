@@ -4,6 +4,7 @@ use App\Http\Controllers\DatabarangController;
 use App\Http\Controllers\DatakeluarController;
 use App\Http\Controllers\PermintaanbarangController;
 use App\Http\Controllers\DatamasukController;
+use App\Http\Controllers\StokbarangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,5 +36,6 @@ Route::resource('/databarangkeluar', DatakeluarController::class);
 Route::get('/tampilkanbarangkeluar', [App\Http\Controllers\DatakeluarController::class, 'tampilkan'])->name('tampilbarangkeluar');
 Route::get('/editbarangmakeluar/{id}/edit/{nama}/{jumlah}/{totalharga}/{tgl}/{ket}', [App\Http\Controllers\DatakeluarController::class, 'editbarangkel'])->name('editbrgkeluar');
 Route::delete('/deletebarangmasukkel/{id}/{nama}', [App\Http\Controllers\DatakeluarController::class, 'destroybarangkel'])->name('hapusbarangkel');
+Route::get('/stokbarang', [App\Http\Controllers\StokbarangController::class, 'index']);
 
 

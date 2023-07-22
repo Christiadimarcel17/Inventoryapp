@@ -97,7 +97,7 @@ class DatabarangController extends Controller
         ];
 
 
-        $$barang->update($editData);
+        $barang->update($editData);
                 return response()->json([
                     'success' => true,
                     'message' => 'Update Sukses'

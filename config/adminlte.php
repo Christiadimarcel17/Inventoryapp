@@ -330,11 +330,11 @@ return [
         ],
         [
             'text' => 'Data Stok Barang',
-            'url'  => '#',
+            'url'  => '/stokbarang',
             'icon' => 'fas fa-fw fa-th-large',
         ],
 
-  
+
     ],
 
     /*
